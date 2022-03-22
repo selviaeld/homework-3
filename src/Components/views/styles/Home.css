@@ -1,0 +1,103 @@
+.playlist {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 15px;
+}
+
+.home-item {
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    background-color: #B7CADB;
+    border-radius: 5px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    transition: all .3s ease-out;
+    width: 100%;
+    align-items: center;
+    color: #0E185F;
+}
+
+.container:hover {
+    background-color: #6FB2D2;
+    cursor: pointer;
+    color: #F7E2E2;
+}
+
+.container:hover .image {
+    box-shadow: 0 0 15px 3px #242424;
+}
+
+.image img{
+    height: 100%;
+    width: 100%;
+}
+
+.container .image {
+    height: 250px;
+    width: 250px;
+}
+
+.descriptions {
+    font-size: 18px;
+}
+
+.descriptions h2{
+    font-size: 24px;
+    margin: 15px 0;
+}
+
+.btn{
+    margin-top: 20px;
+    display: none;
+    border: none;
+    outline: none;
+    background: #F7E2E2;
+    color: #5B7DB1;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    box-shadow: 0 4px 0 #F4BBBB;
+    transition: all .2s ease-out;
+}
+
+.btn:hover{
+    background: #F7CCAC;
+    transition: none;
+}
+
+.btn:active{
+    box-shadow: none;
+    position: relative;
+    top: 4px;
+}
+
+.container:hover .btn{
+    display: block;
+    animation: button .3s linear;
+}
+
+@keyframes button{
+    0%{
+        position: relative;
+        top: 20px;
+        opacity: .3;
+    }
+    50%{
+        position: relative;
+        top: 5px;
+        opacity: .7;
+    }
+    100%{
+        position: relative;
+        top: 0;
+        opacity: 1;
+    }
+}
