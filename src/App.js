@@ -1,5 +1,5 @@
 import "./App.css";
-import HomeItem from "./Components/views/pages/Home-Item";
+import HomeItem from "./Pages/Home-Item";
 
 function App() {
   return (

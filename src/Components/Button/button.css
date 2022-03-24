@@ -1,0 +1,27 @@
+.btn{
+    margin-top: 20px;
+    display: none;
+    border: none;
+    outline: none;
+    background: #F7E2E2;
+    color: #5B7DB1;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    box-shadow: 0 4px 0 #F4BBBB;
+    transition: all .2s ease-out;
+}
+
+.btn:hover{
+    background: #F7CCAC;
+    transition: none;
+}
+
+.btn:active{
+    box-shadow: none;
+    position: relative;
+    top: 4px;
+}
