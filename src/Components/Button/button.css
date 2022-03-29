@@ -1,9 +1,7 @@
 .btn{
-    margin-top: 20px;
-    display: none;
     border: none;
     outline: none;
-    background: #F7E2E2;
+    background: #a08b8b;
     color: #5B7DB1;
     padding: 8px 12px;
     border-radius: 4px;
@@ -12,7 +10,7 @@
     font-weight: 600;
     letter-spacing: 3px;
     box-shadow: 0 4px 0 #F4BBBB;
-    transition: all .2s ease-out;
+    transition: all .2s ease-in-out;
 }
 
 .btn:hover{

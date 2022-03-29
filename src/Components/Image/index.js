@@ -1,9 +1,9 @@
 import React from "react";
-import "./Image.css";
+import Image from "./styles.css";
 
 function index(props) {
     return (
-        <div className="image">
+        <div className={Image.image}>
             <img src={props.src} alt="" />
         </div>
     );

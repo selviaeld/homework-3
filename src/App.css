@@ -3,13 +3,9 @@ body {
   font-family: 'Poppins';
 }
 
-.titleItem {
-  text-align: center;
-  margin: 20px 0;
-  color: #557B83;
-}
-
 .App {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;
 }
