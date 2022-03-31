@@ -6,10 +6,13 @@ import Navbar from "../Components/Navbar";
 
 function HomeItem() {
   const [token, setToken] = useState("");
-  const [track, setTrack] = useState(Data);
+  const [tracks, setTracks] = useState(Data);
+  const [Auth, setAuth] = useState(false);
+  const [Selected, setSelected] = useState([]);
+  const [TrackSelected, setTrackSelected] = useState([]);
 
   const handleClick = () => {
-    const Client_ID = process.env.REACT.APP_SPOTIFY_KEY;
+    const Client_ID = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
     const Response_Type = "token";
     const Redirect_URI = "http://localhost:3000";
     const Scope = "playlist-modify-private";
@@ -31,6 +34,7 @@ function HomeItem() {
     if (window.location.hash) {
       const access_token = getTokenFromUrl(window.location.hash);
       setToken(access_token);
+      setAuth(true);
     }
   }, []);
 
@@ -40,39 +44,84 @@ function HomeItem() {
     getTrackData(query);
   };
 
+  const filterData = data => {
+    const tracks = [...TrackSelected.map(T => Object.assign({}, T)), ...data];
+    const filter = [...new Map(tracks.map(t => [t.uri, t])).values()];
+    setTracks(filter);
+  };
+  
   const getTrackData = query => {
     const url = `https://api.spotify.com/v1/search?q=${query}&type=track&limit=10`;
-    fetch(url, {
-      headers: {
-        Authorization: "Bearer" + token.access_token
-      }
-    })
-    .then(res => res.json())
-    .then(data => setTrack(data.tracks.items));
+    if (query) {
+      fetch(url, {
+        headers: {
+          Authorization: "Bearer " + token.access_token
+        }
+      })
+        .then(res => res.json())
+        .then(data =>
+          TrackSelected.length > 0
+            ? filterData(data.tracks.items)
+            : setTracks(data.tracks.items)
+        );
+    }
   };
 
-  console.log(track);
+  const handleDeselect = data => {
+    setSelected(Selected.filter(S => S !== data.uri));
+    setTrackSelected(TrackSelected.filter(T => T.uri !== data.uri));
+  };
+
+  const handleSelect = data => {
+    setSelected([data.uri, ...Selected]);
+    setTrackSelected([data, ...TrackSelected]);
+    // setTracks(Tracks.filter(T => T !== data));
+    // console.log(data);
+  };
+  // console.log(Selected);
+  console.log(TrackSelected);
 
   return (
     <>
       <Navbar handleSearch={handleSearch} handleClick={handleClick} />
-      <h1>CREATE PLAYLIST</h1>
-      <div className="home-item">
-      {token ? (
-          track.map(D => (
-            <Home
-              key={D.id}
-              image={D.album.images[0].url}
-              title={D.name}
-              artist={D.artists[0].name}
-              album={D.album.name}
-              url={D.album.external_urls.spotify}
-            />
-          ))
-        ) : (
-          <h1>Login!</h1>
-        )}
-      </div>
+      {Auth ? (
+        <>
+          <h1 style={{ marginLeft: 20, marginBottom: 0, fontWeight: 600 }}>
+            Create Playlist
+          </h1>
+          <div className="card-item">
+            {tracks.map(Track =>
+              Selected.find(S => S === Track.uri) ? (
+                <Home
+                  key={Track.uri}
+                  image={Track.album.images[0].url}
+                  title={Track.name}
+                  artist={Track.artists[0].name}
+                  album={Track.album.name}
+                  url={Track.album.external_urls.spotify}
+                  btnText="deselect"
+                  handleSelect={() => handleDeselect(Track)}
+                />
+              ) : (
+                <Home
+                  key={Track.uri}
+                  image={Track.album.images[0].url}
+                  title={Track.name}
+                  artist={Track.artists[0].name}
+                  album={Track.album.name}
+                  url={Track.album.external_urls.spotify}
+                  btnText="select"
+                  handleSelect={() => handleSelect(Track)}
+                />
+              )
+            )}
+          </div>
+        </>
+      ) : (
+        <h1 style={{ marginLeft: 20, marginBottom: 0, fontWeight: 600 }}>
+          Login!
+        </h1>
+      )}
     </>
   );
 }

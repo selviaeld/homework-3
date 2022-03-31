@@ -35,3 +35,12 @@
     align-items: flex-start;
     margin-left: 20px;
 }
+
+@media screen and (max-width: 1024px){
+    .home-item {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-gap: 25px;
+      padding: 20px;
+    }
+}

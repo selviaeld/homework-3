@@ -1,13 +1,10 @@
 import React from "react";
 import "./button.css";
 
-function index({text, url}) {
-    const handleClick = () => {
-        window.location = url;
-    }
+function index({text, handleSelect}) {
 
     return (
-        <button type="submit" className="btn" onClick={handleClick}>{text}</button>
+        <button type="submit" className="btn" onClick={handleSelect}>{text}</button>
     );
 }
 

@@ -4,18 +4,18 @@ import Button from "../Button";
 import Description from "../Description";
 import Image from "../Image"
 
-function Home(props) {
+function Home({title, artist, album, image, handleSelect, btnText}) {
     return (
         <div className="playlist">
             <div className="container">
-                <Image src={props.image} />
+                <Image src={image} />
                 <div className="right">
                     <Description 
-                        title={props.title}
-                        artist={props.artist}
-                        album={props.album}
+                        title={title}
+                        artist={artist}
+                        album={album}
                     />
-                    <Button text="Select" url={props.url} />
+                    <Button text={btnText} handleSelect={handleSelect} />
                 </div>
             </div>
         </div>
