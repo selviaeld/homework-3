@@ -3,32 +3,17 @@ import Home from "../Components/Home/";
 import Data from "../Components/data/DataDummy"
 import "../Components/Home/Home.css";
 import Navbar from "../Components/Navbar";
+import Pop from "../Components/Button/Pop";
+import Form from "../Components/Form";
+import { getTokenFromUrl } from "../Utils/getTokenFromUrl";
 
 function HomeItem() {
   const [token, setToken] = useState("");
   const [tracks, setTracks] = useState(Data);
   const [Auth, setAuth] = useState(false);
-  const [Selected, setSelected] = useState([]);
   const [TrackSelected, setTrackSelected] = useState([]);
-
-  const handleClick = () => {
-    const Client_ID = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
-    const Response_Type = "token";
-    const Redirect_URI = "http://localhost:3000";
-    const Scope = "playlist-modify-private";
-    window.location = `https://accounts.spotify.com/authorize?client_id=${Client_ID}&response_type=${Response_Type}&redirect_uri=${Redirect_URI}&scope=${Scope}&show_dialog=true`;
-  };
-
-  const getTokenFromUrl = hash => {
-    const stringAfterHastag = hash.substring(1);
-    const paramUrl = stringAfterHastag.split("&");
-    const paramSplitUp = paramUrl.reduce((acc, currentValue) => {
-      const [key, value] = currentValue.split("=");
-      acc[key] = value;
-      return acc;
-    }, {});
-    return paramSplitUp;
-  };
+  const [Create, setCreate] = useState(false);
+  const [UserID, setUserID] = useState("");
 
   useEffect(() => {
     if (window.location.hash) {
@@ -38,10 +23,46 @@ function HomeItem() {
     }
   }, []);
 
+  useEffect(() => {
+    if (token !== "") {
+      getCurrentProfile();
+    }
+  });
+
+  const handleClick = () => {
+    const Client_ID = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
+    const Response_Type = "token";
+    const Redirect_URI = "http://localhost:3000";
+    const Scope = "playlist-modify-private";
+    window.location = `https://accounts.spotify.com/authorize?client_id=${Client_ID}&response_type=${Response_Type}&redirect_uri=${Redirect_URI}&scope=${Scope}&show_dialog=true`;
+  };
+
   const handleSearch = e => {
     e.preventDefault();
     const query = e.target.query.value;
     getTrackData(query);
+  };
+
+  const handleDeselect = data => {
+    setTrackSelected(TrackSelected.filter(T => T.uri !== data.uri));
+  };
+
+  const handleSelect = data => {
+    setTrackSelected([data, ...TrackSelected]);
+  };
+
+  const handleForm = () => {
+    setCreate(!Create);
+  };
+
+  const handleCreate = async e => {
+    e.preventDefault();
+    if (TrackSelected.length > 0) {
+      createPlaylist(e);
+      alert("Playlist Created!");
+    } else {
+      alert("You need songs to make a playlist, choose some!");
+    }
   };
 
   const filterData = data => {
@@ -67,31 +88,74 @@ function HomeItem() {
     }
   };
 
-  const handleDeselect = data => {
-    setSelected(Selected.filter(S => S !== data.uri));
-    setTrackSelected(TrackSelected.filter(T => T.uri !== data.uri));
+  const getCurrentProfile = () => {
+    const url = `https://api.spotify.com/v1/me`;
+    fetch(url, {
+      headers: {
+        Authorization: "Bearer " + token.access_token
+      }
+    })
+      .then(res => res.json())
+      .then(data => setUserID(data.id));
   };
 
-  const handleSelect = data => {
-    setSelected([data.uri, ...Selected]);
-    setTrackSelected([data, ...TrackSelected]);
-    // setTracks(Tracks.filter(T => T !== data));
-    // console.log(data);
+  const createPlaylist = async e => {
+    const url = `https://api.spotify.com/v1/users/${UserID}/playlists`;
+    await fetch(url, {
+      method: "POST",
+      headers: {
+        Authorization: "Bearer " + token.access_token,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        name: e.target[0].value,
+        public: false,
+        collaborative: false,
+        description: e.target[1].value
+      })
+    })
+      .then(res => res.json())
+      .then(data => storeTracks(data.id));
   };
-  // console.log(Selected);
-  console.log(TrackSelected);
+
+  const storeTracks = async data => {
+    const uri = TrackSelected.map(T => T.uri);
+    const url = `https://api.spotify.com/v1/playlists/${data}/tracks?position=0&uris=${uri}`;
+    await fetch(url, {
+      method: "POST",
+      headers: {
+        Authorization: "Bearer " + token.access_token,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        uris: uri,
+        position: 0
+      })
+    })
+      .then(res => res.json())
+      .then(data => console.log(data));
+    setCreate(false);
+    setTrackSelected([]);
+  };
 
   return (
     <>
       <Navbar handleSearch={handleSearch} handleClick={handleClick} />
       {Auth ? (
         <>
-          <h1 style={{ marginLeft: 20, marginBottom: 0, fontWeight: 600 }}>
-            Create Playlist
-          </h1>
+          <div className="create-playlist">
+            <h1>Create Playlist</h1>
+            {TrackSelected.length > 0 && (
+              <Pop
+                handleForm={handleForm}
+                text={Create ? "Cancel" : "Create Playlist"}
+              />
+            )}
+          </div>
+          {Create && <Form handleCreate={handleCreate} />}
           <div className="card-item">
             {tracks.map(Track =>
-              Selected.find(S => S === Track.uri) ? (
+              TrackSelected.find(S => S === Track.uri) ? (
                 <Home
                   key={Track.uri}
                   image={Track.album.images[0].url}
