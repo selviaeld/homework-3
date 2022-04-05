@@ -1,30 +1,34 @@
 import React, { useState, useEffect } from "react";
-import Home from "../Components/Home/";
-import Data from "../Components/data/DataDummy"
+import Home from "../Components/Home";
+import Data from "../Components/Data/DataDummy"
 import "../Components/Home/Home.css";
 import Navbar from "../Components/Navbar";
 import Pop from "../Components/Button/Pop";
 import Form from "../Components/Form";
-import { getTokenFromUrl } from "../Utils/getTokenFromUrl";
+import { getTokenFromUrl } from "../Components/Utils/getTokenFromUrl";
+import { getToken } from "../Redux/tokenSlice";
+import { useSelector, useDispatch } from "react-redux";
 
-function HomeItem() {
-  const [token, setToken] = useState("");
+function Index() {
   const [tracks, setTracks] = useState(Data);
-  const [Auth, setAuth] = useState(false);
   const [TrackSelected, setTrackSelected] = useState([]);
   const [Create, setCreate] = useState(false);
-  const [UserID, setUserID] = useState("");
+  const Token = useSelector(state => state.token.token);
+  const [User, setUser] = useState([]);
+  const [Auth, setAuth] = useState(false);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (window.location.hash) {
       const access_token = getTokenFromUrl(window.location.hash);
-      setToken(access_token);
+      dispatch(getToken(access_token));
       setAuth(true);
     }
   }, []);
 
   useEffect(() => {
-    if (token !== "") {
+    if (Token !== "") {
       getCurrentProfile();
     }
   });
@@ -76,7 +80,7 @@ function HomeItem() {
     if (query) {
       fetch(url, {
         headers: {
-          Authorization: "Bearer " + token.access_token
+          Authorization: "Bearer " + Token.access_token
         }
       })
         .then(res => res.json())
@@ -92,19 +96,19 @@ function HomeItem() {
     const url = `https://api.spotify.com/v1/me`;
     fetch(url, {
       headers: {
-        Authorization: "Bearer " + token.access_token
+        Authorization: "Bearer " + Token.access_token
       }
     })
       .then(res => res.json())
-      .then(data => setUserID(data.id));
+      .then(data => setUser(data));
   };
 
   const createPlaylist = async e => {
-    const url = `https://api.spotify.com/v1/users/${UserID}/playlists`;
+    const url = `https://api.spotify.com/v1/users/${User.id}/playlists`;
     await fetch(url, {
       method: "POST",
       headers: {
-        Authorization: "Bearer " + token.access_token,
+        Authorization: "Bearer " + Token.access_token,
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
@@ -124,7 +128,7 @@ function HomeItem() {
     await fetch(url, {
       method: "POST",
       headers: {
-        Authorization: "Bearer " + token.access_token,
+        Authorization: "Bearer " + Token.access_token,
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
@@ -190,4 +194,4 @@ function HomeItem() {
   );
 }
 
-export default HomeItem;
+export default Index;
