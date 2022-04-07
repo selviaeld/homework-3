@@ -1,10 +1,10 @@
 import React from "react";
 import "./button.css";
 
-function index({text, handleSelect}) {
+function index({text}) {
 
     return (
-        <button type="submit" className="btn" onClick={handleSelect}>{text}</button>
+        <button type="submit" className="btn" >{text}</button>
     );
 }
 
