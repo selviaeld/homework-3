@@ -8,10 +8,11 @@ import Pop from "../Components/Button/Pop";
 import Form from "../Components/Form";
 import { getTrackData, filterData, createPlaylist } from "../Utils/Services";
 import { login } from "../Redux/userSlice";
+import { trackSelect, trackDeselect } from "../Redux/selectedSlice";
 
 function Index() {
   const [Tracks, setTracks] = useState(Data);
-  const [TrackSelected, setTrackSelected] = useState([]);
+  const TrackSelected= useSelector(state => state.selected.selected);
   const [Create, setCreate] = useState(false);
   const Token = useSelector(state => state.token.token);
   const User = useSelector(state => state.user.user);
@@ -39,11 +40,11 @@ function Index() {
   };
 
   const handleDeselect = data => {
-    setTrackSelected(TrackSelected.filter(T => T.uri !== data.uri));
+    dispatch(trackDeselect(TrackSelected.filter(T => T.uri !== data.uri)));
   };
 
   const handleSelect = data => {
-    setTrackSelected([data, ...TrackSelected]);
+    dispatch(trackSelect([data, ...TrackSelected]));
   };
 
   const handleForm = () => {
