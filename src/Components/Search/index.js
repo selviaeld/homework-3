@@ -1,5 +1,5 @@
 import React from "react";
-import Search from "./styles.css";
+import Search from "./style.module.css";
 
 function Index({ handleSubmit }) {
   return (

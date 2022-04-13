@@ -1,7 +1,7 @@
 import React from "react";
 import Title from "../Title";
 import Album from "../Album";
-import Description from "./styles.css";
+import Description from "./style.module.css";
 
 function index(props) {
     return (

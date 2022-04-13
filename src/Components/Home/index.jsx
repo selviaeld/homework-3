@@ -1,5 +1,5 @@
 import React from "react";
-import "./Home.css";
+import "./style.module.css";
 import Button from "../Button";
 import Description from "../Description";
 import Image from "../Image"
@@ -15,7 +15,9 @@ function Home({title, artist, album, image, handleSelect, btnText}) {
                         artist={artist}
                         album={album}
                     />
-                    <Button text={btnText} handleSelect={handleSelect} />
+                    <div onClick={handleSelect}>
+                        <Button text={btnText} />
+                    </div>
                 </div>
             </div>
         </div>

@@ -6,8 +6,8 @@ import {
   Route,
   Redirect
 } from "react-router-dom";
-import CreatePlaylist from "./Pages/CreatePlaylist";
-import Login from "./Pages/Login";
+import Auth from "./Pages/Auth"
+import Landing from "./Pages/Landing";
 import { useSelector, useDispatch } from "react-redux";
 import { getTokenFromUrl } from "./Utils/Services";
 import { getToken } from "./Redux/tokenSlice";
@@ -28,10 +28,10 @@ function App() {
       <Router>
         <Switch>
           <Route path="/create-playlist">
-            {Token !== "" ? <CreatePlaylist /> : <Redirect to="/" />}
+            {Token !== "" ? <Auth /> : <Redirect to="/" />}
           </Route>
           <Route path="/">
-            {Token !== "" ? <Redirect to="/create-playlist" /> : <Login />}
+            {Token !== "" ? <Redirect to="/create-playlist" /> : <Landing />}
           </Route>
         </Switch>
       </Router>

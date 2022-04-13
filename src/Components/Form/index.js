@@ -1,5 +1,5 @@
 import React from 'react'
-import Form from "./style.css"
+import Form from "./style.module.css"
 
 function index({handleCreate}) {
     return (

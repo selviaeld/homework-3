@@ -1,0 +1,59 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+    position: sticky;
+    z-index: 1;
+    top: 0;
+    background: rgba(255, 255, 255, 0.555);
+    backdrop-filter: blur(10px);
+    padding: 20px 50px;
+}
+  
+.logo {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 30px;
+    font-weight: 900;
+    color: #8887AD;
+    text-decoration: none;
+}
+
+.navLeft ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    align-items: center;
+  }
+  
+.navLeft li {
+    font-family: "Nunito", sans-serif;
+    margin-left: 30px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 16px;
+    color: #8887AD;
+    transition: all 0.2s ease-out;
+}
+  
+.navLeft li:hover{
+    color: #4b4888;
+}
+  
+.btnAuth {
+    border: none;
+    outline: none;
+    background: #8887AD;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    transition: all 0.2s ease-in-out;
+}
+  
+.btnAuth:hover {
+    background: #9382b4;
+}

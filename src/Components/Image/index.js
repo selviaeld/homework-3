@@ -1,5 +1,5 @@
 import React from "react";
-import Image from "./styles.css";
+import Image from "./style.module.css";
 
 function index(props) {
     return (

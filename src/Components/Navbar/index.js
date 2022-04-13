@@ -1,16 +1,23 @@
 import React from "react";
-import Search from "../Search/index";
-import Navbar from "./styles.css";
-import Profile from "../Profile/Profile";
+import { Link } from "react-router-dom";
+import Navbar from "./style.module.css";
 
-function Index({ handleSearch }){
+function Index({ handleClick }){
   return (
     <header>
-      <div className={Navbar.logo}>MyPlaylist</div>
-      <div>
-        <Search handleSubmit={handleSearch} />
+      <Link className={Navbar.logo} to="/">
+        JAMAICA
+      </Link>
+      <div className={Navbar.navLeft}>
+        <ul>
+          <li>Premium</li>
+          <li>About</li>
+          <li>Support</li>
+          <li onClick={handleClick}>
+            <div className={Navbar.btnAuth}>SIGN IN</div>
+          </li>
+        </ul>
       </div>
-      <Profile />
     </header>
   );
 }

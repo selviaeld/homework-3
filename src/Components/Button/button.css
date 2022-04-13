@@ -1,4 +1,4 @@
-.btn{
+.btn {
     border: none;
     outline: none;
     background: #a08b8b;
@@ -9,17 +9,9 @@
     font-size: 14px;
     font-weight: 600;
     letter-spacing: 3px;
-    box-shadow: 0 4px 0 #F4BBBB;
     transition: all .2s ease-in-out;
 }
 
-.btn:hover{
+.btn:hover {
     background: #F7CCAC;
-    transition: none;
-}
-
-.btn:active{
-    box-shadow: none;
-    position: relative;
-    top: 4px;
 }

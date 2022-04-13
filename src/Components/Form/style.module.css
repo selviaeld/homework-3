@@ -8,7 +8,7 @@
 .group label {
     font-size: 20px;
     font-weight: 700;
-    color: #b3b5b9;
+    color: #243D25;
  }
   
 .input {
@@ -22,7 +22,7 @@
 .btn {
     border: none;
     outline: none;
-    background: rgb(131, 218, 131);
+    background: #5F7464;
     color: white;
     padding: 6px 8px;
     border-radius: 4px;
@@ -30,12 +30,12 @@
     font-size: 14px;
     font-weight: 600;
     letter-spacing: 2px;
-    box-shadow: 0 4px 0 rgb(117, 192, 117);
+    box-shadow: 0 4px 0 #A2B38B;
     transition: all 0.2s ease-in;
 }
   
 .btn:hover {
-    background: rgb(124, 231, 124);
+    background: #5F7464;
     transition: none;
 }
   
