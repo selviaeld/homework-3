@@ -39,8 +39,8 @@
     transition: none;
 }
   
-  .btn:active {
+.btn:active {
     box-shadow: none;
     position: relative;
     top: 4px;
-  }
+}

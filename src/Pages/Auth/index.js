@@ -5,7 +5,13 @@ import { login } from "../../Redux/userSlice";
 import Style from "./style.module.css";
 import CreatePlaylist from "../CreatePlaylist/CreatePlaylist";
 import LikedSong from "../LikedSong";
+import Recomend from "../Recomend";
+
 const routes = [
+  {
+    path:"/recomend",
+    main: () => <Recomend />
+  },
   {
     path: "/create-playlist",
     main: () => <CreatePlaylist />
@@ -35,44 +41,42 @@ function Index() {
     <div className={Style.container}>
       <div className={Style.sidebar}>
         <Link className={Style.logo} to="/">
-          JOFY
+            JAMAICA
         </Link>
         <ul className={Style.menu}>
-          <li className={Style.menuTitle}>Recomend</li>
+          <li className={Style.menuTitle}>Recomendation</li>
           <li>
-            <Link to="/create-playlist" className={Style.menuLink}><i className="fas fa-compact-disc" />For You</Link>
+            <Link to="/recomend" className={Style.menuLink}><i className="fa fa-star" />Recomend</Link>
           </li>
           <li>
-            <Link to="/liked-song" className={Style.menuLink}><i className="fas fa-compact-disc" />Library</Link>
+            <Link to="/liked-song" className={Style.menuLink}><i className="fa fa-archive" />Library</Link>
           </li>
           <li>
-            <Link to="/liked-song" className={Style.menuLink}><i className="fas fa-compact-disc" />Radio Station</Link>
+            <Link to="/liked-song" className={Style.menuLink}><i className="fa fa-podcast" />Podcast</Link>
           </li>
         </ul>
         <ul className={Style.menu}>
           <li className={Style.menuTitle}>My Music</li>
           <li>
-            <Link to="/create-playlist" className={Style.menuLink}><i className="fas fa-compact-disc" />Create Playlist</Link>
+            <Link to="/create-playlist" className={Style.menuLink}><i className="fa fa-music" />Create Playlist</Link>
           </li>
           <li>
-            <Link to="/liked-song" className={Style.menuLink}><i className="fas fa-compact-disc" />Liked Song</Link>
+            <Link to="/liked-song" className={Style.menuLink}><i className="fa fa-heart" />Favorite Song</Link>
           </li>
         </ul>
         <ul className={Style.menu}>
           <li className={Style.menuTitle}>Playlist</li>
           <li>
-            <Link to="/create-playlist" className={Style.menuLink}><i className="fas fa-compact-disc" />Lofi Hiphop</Link>
+            <Link to="/create-playlist" className={Style.menuLink}><i className="fa fa-play" />Pop</Link>
           </li>
           <li>
-            <Link to="/liked-song" className={Style.menuLink}><i className="fas fa-compact-disc" />Jepun</Link>
+            <Link to="/liked-song" className={Style.menuLink}><i className="fa fa-volume-up" />Jazz</Link>
           </li>
         </ul>
       </div>
       <div className={Style.content}>
         <Switch>
           {routes.map((route, index) => (
-            // Render more <Route>s with the same paths as
-            // above, but different components this time.
             <Route
               key={index}
               path={route.path}

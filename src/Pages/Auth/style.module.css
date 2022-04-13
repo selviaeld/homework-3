@@ -8,11 +8,12 @@
     padding: 30px 20px;
     position: sticky;
     top: 0;
-    height: 576px;
+    height: 100%;
     width: 160px;
     display: flex;
     flex-direction: column;
     border-right: 2px solid #e2d3fd50;
+    background-color: rgba(255, 255, 255, 0.555);
 }
   
 .logo {
@@ -21,8 +22,8 @@
     font-weight: 900;
     color: #7B7BB9;
     text-decoration: none;
-    margin-bottom: 30px;
-    margin-left: 30px;
+    margin: 0 25px 25px 0;
+    text-align: center;
 }
   
 .menu {
@@ -43,22 +44,20 @@
     text-decoration: none;
     display: flex;
     align-items: center;
-    color: black;
+    color: #7B7BB9;
     font-size: 16px;
     font-weight: 600;
-    padding: 10px 3px;
+    padding: 10px;
     transition: all .2s ease-in-out;
 }
   
 .menuLink:hover {
-    /* background: #e2d3fd; */
     border-radius: 12px;
-    /* color: white; */
-    color: #e2d3fd;
+    color: #837c91;
 }
   
 .menuLink i {
-    margin: 0 5px;
+    margin-right: 10px;
 }
   
 .menuSelected {

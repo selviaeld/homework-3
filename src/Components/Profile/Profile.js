@@ -7,7 +7,7 @@ function Profile() {
 
   return (
     <div className={Style.profile}>
-      <p><i className="fa-duotone fa-user" />{User.display_name}</p>
+      <p><i className="fa fa-user"  /> {User.display_name}</p>
     </div>
   );
 }

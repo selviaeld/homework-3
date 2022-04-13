@@ -16,18 +16,17 @@ function index() {
       <Navbar handleClick={handleClick} />
       <div className={Style.container}>
         <div className={Style.left}>
-          <h1>You bring the passion, we bring the music.</h1>
+          <h1>Welcome to <span>JAMAICA</span></h1>
           <p>
-            Get playlists and albums inspired by the artists and genres you're
-            listening to. 3 months free, then 
-            <span className={Style.leftPrice}> $5 / User for month</span>.
+          Find your favorite songs and artists. Numerous song suggestions will undoubtedly make you fall in love with it. Use this app for 1 month for free, then sign up to become a premium member of our subscription for
+            <span className={Style.leftPrice}> $5.99/month.</span>.
           </p>
           <div className={Style.btnAction} onClick={handleClick}>
             Get Started
           </div>
         </div>
         <div className={Style.right}>
-          <img src={process.env.PUBLIC_URL + "playlist.svg"} alt="music-list" />
+          <img src={process.env.PUBLIC_URL + "/images/playlist.svg"} alt="music-list" />
         </div>
       </div>
     </div>

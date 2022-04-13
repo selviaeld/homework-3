@@ -1,13 +1,10 @@
 import React from "react";
-import Search from "./style.module.css";
+import Style from "./style.module.css";
 
 function Index({ handleSubmit }) {
   return (
     <form onSubmit={handleSubmit}>
-      <input className={Search.input} type="text" name="query" placeholder="Search..." />
-      <button className={Search.btn} type="submit">
-        <i className="fas fa-search" />
-      </button>
+      <input className={Style.input} type="text" name="query" placeholder="Search Song.." autoComplete="off" autoCorrect="off" autoCapitalize="off" spellCheck="false" maxLength="25" />
     </form>
   );
 }
