@@ -1,24 +1,31 @@
 import React from "react";
-import "./style.module.css";
-import Button from "../Button";
+import Style from "./style.module.css";
 import Description from "../Description";
-import Image from "../Image"
+import Image from "../Image";
+import { Button } from "@chakra-ui/react";
 
-function Home({title, artist, album, image, handleSelect, btnText}) {
+function Home({ title, artist, album, image, handleSelect, btnText }) {
     return (
-        <div className="playlist">
-            <div className="container">
+        <div className={Style.playlist}>
+            <div className={Style.container}>
                 <Image src={image} />
-                <div className="right">
+                <div className={Style.right}>
                     <Description 
                         title={title}
                         artist={artist}
                         album={album}
                     />
-                    <div onClick={handleSelect}>
-                        <Button text={btnText} />
-                    </div>
                 </div>
+            </div>
+            <div onClick={handleSelect} className={Style.btn}>
+                <Button
+                    size="sm"
+                    background="rgb(209, 211, 240)"
+                    color="white"
+                    fontWeight="700"
+                >
+                    {btnText}
+                </Button>
             </div>
         </div>
     );

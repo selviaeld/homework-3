@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Style from "./style.module.css";
 import Profile from "../../Components/Profile/Profile";
-import { Text } from "@chakra-ui/react";
+import { Text, Container, Flex, Box, Grid } from "@chakra-ui/react";
+import Recomendation from "../../Components/Recomendation";
 
 const cardList = [
     {
@@ -42,38 +43,69 @@ function Index() {
         } else if (data>3 && data<11) {
             setGreetings("Morning! Have a nice day")
         } else if (data>11 && data<17) {
-            setGreetings("Good Afternoon, How's your day?")
+            setGreetings("Good afternoon, How's your day?")
         } else if (data>17 && data<21) {
-            setGreetings("Good Evening")
+            setGreetings("Good evening")
         }
     }, []);
 
     return (
-        <div className={Style.container}>
-            <div className={Style.colorHover}
-                style={{ backgroundImage: "linear-gradient(#ebe0ff, white)" }}>
-            </div>
-            <div className={Style.main}>
-                <div className={Style.header}>
+        <Container maxW="container.xl" p={0}>
+            <Box backgroundImage="linear-gradient(#ebe0ff, white)" height="300" />
+            <Box mt="-300">
+                <div className={Style.navbar}>
                     <Profile />
                 </div>
-                <div className={Style.content}>
-                <Text fontSize="30px" fontWeight="900" color="rgb(143, 145, 179)" mb={4}>{greetings}</Text>
-                    <div className={Style.card}>
+                <Box py={3} px={5}>
+                    <Text
+                        fontSize="3xl"
+                        fontWeight="700"
+                        color="rgb(143, 145, 179)"
+                        fontFamily="Poppins, sans-serif"
+                        mb={4}
+                    >
+                        {greetings}
+                    </Text>
+                    <Grid templateColumns="repeat(4, 1fr)" gap={5}>
                         {cardList.map((card, index) => (
-                            <div className={Style.cardList} key={index}>
+                            <Flex
+                                background="rgba(190, 192, 235, 0.3)"
+                                _hover={{ background: "rgba(223, 224, 252, 0.8)" }}
+                                key={index}
+                                pointerEvents="pointer-events"
+                                borderRadius="md"
+                            >
                                 <div className={Style.cardImage}>
                                     <img src={card.images} alt={card.name} />
                                 </div>
-                                <div className={Style.cardText}>
-                                    <p>{card.name}</p>
-                                </div>
-                            </div>
+                                <Flex align="center" justify="center" ml={4}>
+                                    <Text
+                                        color="rgb(143, 145, 179)"
+                                        fontWeight="800"
+                                        fontSize="18"
+                                        fontFamily="Nunito, sans-serif"
+                                    >
+                                        {card.name}
+                                    </Text>
+                                </Flex>
+                            </Flex>
                         ))}
-                    </div>
-                </div>
-            </div>
-        </div>
+                        </Grid>
+                    </Box>
+                    <Box px={5} py={2}>
+                        <Text
+                            fontSize="xl"
+                            fontWeight="600"
+                            color="rgb(143, 145, 179)"
+                            fontFamily="Poppins, sans-serif"
+                            mb={1}
+                        >
+                            Releases for You
+                        </Text>
+                        <Recomendation />
+                    </Box>
+                </Box>
+            </Container>
     );
 }
 

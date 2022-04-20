@@ -1,0 +1,19 @@
+.menuLink {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    color: #7B7BB9;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 10px;
+    transition: all .2s ease-in-out;
+}
+  
+.menuLink:hover {
+    border-radius: 12px;
+    color: #837c91;
+}
+  
+.menuLink i {
+    margin-right: 10px;
+}

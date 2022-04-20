@@ -9,10 +9,11 @@
     background-size: 14px;
     background-position: left;
     background-position-x: 12px;
-    background-color: #d8ccee;
+    background-color: #c0a9e9;
     padding: 10px 40px;
     width: 180px;
     transition: all .3s linear;
+    color: #f3ecff;
 }
 
 .input:focus{

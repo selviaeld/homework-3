@@ -73,3 +73,33 @@ export const getCurrentUser = async Token => {
     }).then(res => res.json());
     return data;
 };
+
+export const getPlaylistUser = async Token => {
+  const url = `https://api.spotify.com/v1/me/playlists?offset=6&limit=20`;
+  const data = await fetch(url, {
+    headers: {
+      Authorization: "Bearer " + Token.access_token
+    }
+  }).then(res => res.json());
+  return data;
+}
+
+export const getRecomendation = async Token => {
+  const url = `https://api.spotify.com/v1/recommendations?limit=20&seed_artist=4NHQUGzhtTLFvgF5SZesLK&seed_genres=classical&seed_tracks=0c6xIDDpzE81m2q797ordA`;
+  const data = await fetch(url, {
+    headers: {
+      Authorization: "Bearer " + Token.access_token
+    }
+  }).then(res => res.json());
+  return data;
+}
+
+export const getLikedTrack = async Token => {
+  const url = `https://api.spotify.com/v1/me/tracks?market=ES&limit=20`;
+  const data = await fetch(url, {
+    headers: {
+      Authorization: "Bearer " + Token.access_token
+    }
+  }).then(res => res.json());
+  return data;
+}

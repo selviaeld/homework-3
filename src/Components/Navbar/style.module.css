@@ -15,7 +15,7 @@ header {
     font-family: 'Courier New', Courier, monospace;
     font-size: 30px;
     font-weight: 900;
-    color: #8887AD;
+    color: #8971b9;
     text-decoration: none;
 }
 
@@ -32,19 +32,19 @@ header {
     cursor: pointer;
     font-weight: 700;
     font-size: 16px;
-    color: #8887AD;
+    color: #725e9b;
     transition: all 0.2s ease-out;
 }
   
 .navLeft li:hover{
-    color: #4b4888;
+    color: #403d80;
 }
   
 .btnAuth {
     border: none;
     outline: none;
-    background: #8887AD;
-    color: white;
+    background: #9b99dd;
+    color: hsl(0, 0%, 100%);
     padding: 8px 15px;
     border-radius: 50px;
     cursor: pointer;

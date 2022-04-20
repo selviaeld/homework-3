@@ -26,23 +26,3 @@
     align-items: flex-start;
     margin-left: 20px;
 }
-
-.btnSelect {
-    border: none;
-    outline: none;
-    background: rgb(209, 211, 240);
-    color: white;
-    padding: 8px 15px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    transition: all 0.2s ease-in-out;
-}
-  
-.btnSelect:hover {
-
-    background: rgb(176, 178, 206);
-}

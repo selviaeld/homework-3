@@ -1,10 +1,12 @@
 import React from "react";
-import "./button.css";
+import { Button, ButtonGroup } from "@chakra-ui/react";
 
-function index({text}) {
-
+function index({ text }) {
     return (
-        <button type="submit" className="btn" >{text}</button>
+        <ButtonGroup size="sm" isAttached variant="outline">
+            <Button mr="-px"> {text}</Button>
+            
+        </ButtonGroup>
     );
 }
 

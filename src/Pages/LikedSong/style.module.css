@@ -1,0 +1,10 @@
+.navbar {
+    display: flex;
+    justify-content: flex-start;
+    position: sticky;
+    top: 0;
+    padding: 20px;
+    z-index: 2;
+    background-color: hsla(180, 33%, 99%, 0.6);
+    backdrop-filter: blur(5px);
+  }
