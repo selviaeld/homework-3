@@ -1,0 +1,68 @@
+.container {
+    font-family: "Nunito", sans-serif;
+}
+  
+.colorHover {
+    position: relative;
+    height: 300px;
+}
+  
+.main {
+    position: relative;
+    top: -300px;
+    padding: 0 20px;
+}
+  
+.header {
+    display: flex;
+    justify-content: flex-start;
+    position: sticky;
+    top: 0;
+    padding: 20px;
+    z-index: 2;
+}
+  
+.content {
+    padding: 0 30px;
+}
+  
+.content h1 {
+    color: #837c91;
+    font-weight: 900;
+}
+  
+.card {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 20px;
+}
+  
+.cardList {
+    background: rgba(223, 224, 252, 0.6);
+    display: flex;
+    border-radius: 5px;
+    cursor: pointer;
+}
+  
+.cardImage {
+    width: 100px;
+    height: 100px;
+}
+  
+.cardImage img {
+    height: 100%;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+  
+.cardText {
+    display: flex;
+    align-items: center;
+    margin-left: 50px;
+}
+  
+.cardText p {
+    color: rgb(143, 145, 179);
+    font-size: 18px;
+    font-weight: 800;
+}

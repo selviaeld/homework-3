@@ -1,5 +1,5 @@
-import React from 'react'
-import Form from "./style.module.css"
+import React from "react";
+import Form from "./style.module.css";
 
 function index({handleCreate}) {
     return (
@@ -12,9 +12,9 @@ function index({handleCreate}) {
                 <label htmlFor="description">Description: </label>
                 <input className={Form.input} name="description" id="description" type="text" placeholder="Desc..." minLength="20" />
             </div>
-            <button className={Form.btn} type="submit">Submit</button>
+            <button className={Form.btn} type="submit">Add</button>
         </form>
     )
 }
 
-export default index
+export default index;

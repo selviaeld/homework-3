@@ -29,12 +29,15 @@ function App() {
         <Switch>
           <Route path="/create-playlist">
             {Token !== "" ? <Auth /> : <Redirect to="/" />}
-            {/* <Auth /> */}
+            {/*<Auth />*/}
           </Route>
           <Route path="/recomend">
             {Token !== "" ? <Auth /> : <Redirect to="/" />}
-            {/* <Auth /> */}
-            </Route>
+            {/*<Auth />*/}
+          </Route>
+          <Route path="/liked-songs">
+            {Token !== "" ? <Auth /> : <Redirect to="/" />}
+          </Route>
           <Route path="/">
             {Token !== "" ? <Redirect to="/create-playlist" /> : <Landing />}
           </Route>

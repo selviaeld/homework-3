@@ -16,7 +16,7 @@ export const filterData = (data, TrackSelected) => {
 };
 
 export const getTrackData = async (query, Token) => {
-    const url = `https://api.spotify.com/v1/search?q=${query}&type=track&limit=10`;
+    const url = `https://api.spotify.com/v1/search?q=${query}&type=track&limit=20`;
     if (query) {
       const data = await fetch(url, {
         headers: {

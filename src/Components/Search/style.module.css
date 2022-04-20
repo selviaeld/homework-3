@@ -1,16 +1,22 @@
 .input{
+    font-size: 14px;
+    text-align: left;
+    font-weight: 600;
+    font-family: "Nunito", sans-serif;
     border: none;
-    border-bottom: 2px solid #F0F3F9;
     outline: none;
-    padding: 8px 12px;
-    background: none;
+    /*background: url("./search-solid.svg") no-repeat;*/
+    background-size: 14px;
+    background-position: left;
+    background-position-x: 12px;
+    background-color: #d8ccee;
+    padding: 10px 40px;
+    width: 180px;
+    transition: all .3s linear;
 }
 
-.btn{
-    border-top-right-radius: 30px;
-    border-bottom-right-radius: 30px;
-    border: none;
-    background: none;
-    padding: 8px 12px;  
-    cursor: pointer;
+.input:focus{
+    background-color: #9586b3;
+    color: #f3ecff;
+    width: 200px;
 } 

@@ -9,6 +9,7 @@ import Style from "./style.module.css";
 import { storeTrack } from "../../Redux/trackSlice";
 import Search from "../../Components/Search/index";
 import Profile from "../../Components/Profile/Profile";
+import { Skeleton } from "@chakra-ui/react";
 
 function Index() {
   const Tracks = useSelector(state => state.track.track);
@@ -16,6 +17,7 @@ function Index() {
   const [Create, setCreate] = useState(false);
   const Token = useSelector(state => state.token.token);
   const User = useSelector(state => state.user.user);
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
 
   const handleDeselect = data => {
@@ -29,11 +31,13 @@ function Index() {
   const handleSearch = e => {
     e.preventDefault();
     const query = e.target.query.value;
+    setLoading(true);
     getTrackData(query, Token).then(data =>
       TrackSelected.length > 0
         ? dispatch(storeTrack(filterData(data.tracks.items, TrackSelected)))
         : dispatch(storeTrack(data.tracks.items))
-    );
+    )
+    .then(() => setLoading(false));
   };
 
   const handleForm = () => {
@@ -82,16 +86,18 @@ function Index() {
               handleSelect={() => handleDeselect(Track)}
             />
           ) : (
-            <Home
-              key={Track.uri}
-              image={Track.album.images[0].url}
-              title={Track.name}
-              artist={Track.artists[0].name}
-              album={Track.album.name}
-              url={Track.album.external_urls.spotify}
-              btnText="select"
-              handleSelect={() => handleSelect(Track)}
-            />
+            <Skeleton isLoaded={!loading} speed="1">
+              <Home
+                key={Track.uri}
+                image={Track.album.images[0].url}
+                title={Track.name}
+                artist={Track.artists[0].name}
+                album={Track.album.name}
+                url={Track.album.external_urls.spotify}
+                btnText="select"
+                handleSelect={() => handleSelect(Track)}
+              />
+            </Skeleton>
           )
         )}
       </div>

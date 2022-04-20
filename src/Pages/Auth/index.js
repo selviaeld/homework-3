@@ -77,11 +77,7 @@ function Index() {
       <div className={Style.content}>
         <Switch>
           {routes.map((route, index) => (
-            <Route
-              key={index}
-              path={route.path}
-              children={<route.main />} 
-            />
+            <Route key={index} path={route.path} children={<route.main />} />
           ))}
         </Switch>
       </div>

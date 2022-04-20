@@ -1,9 +1,12 @@
 import React from "react";
+import { Text } from "@chakra-ui/react";
 
 function index(props) {
     return (
         <div>
+            <Text fontSize="12px" color="rgb(108, 111, 119)" fontWeight="medium">
             {props.artist}, {props.album}
+            </Text>
         </div>
     );
 }

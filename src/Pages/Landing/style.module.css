@@ -18,14 +18,14 @@
     font-weight: 900;
     margin: 0;
 }
-  
+
 .left p {
-    font-family: "Nunito", sans-serif;
-    width: 57%;
-    color: #0f0f0f;
-    
-    font-weight: 600;
+    font-family: "poppins";
+    width: 50%;
+    color: #55505e;
+    font-size: 20px;
     margin: 15px 0 30px;
+    line-height: 120%;
 }
   
 .leftPrice {
@@ -60,6 +60,7 @@
 }
   
 .btnAction {
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     border: none;
     outline: none;
     background: #837c91;
