@@ -7,7 +7,7 @@ function index() {
     const Client_ID = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
     const Response_Type = "token";
     const Redirect_URI = "http://localhost:3000";
-    const Scope = "playlist-modify-private";
+    const Scope = "playlist-modify-private user-library-read";
     window.location = `https://accounts.spotify.com/authorize?client_id=${Client_ID}&response_type=${Response_Type}&redirect_uri=${Redirect_URI}&scope=${Scope}&show_dialog=true`;
   };
 

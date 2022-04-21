@@ -20,7 +20,7 @@ function Profile() {
           <div className={Style.image}>
             <img src={User.images[0].url} alt={User.display_name} />
           </div>     
-          <p><i className="fa fa-user"  /> {User.display_name}</p>
+          <p><i className="fa fa-user" /> {User.display_name}</p>
          </>
       )}
     </div>

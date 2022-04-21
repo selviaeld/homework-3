@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import Home from "../../Components/Home";
+import HomeTrack from "../../Components/Track";
 import Data from "../../Constants/DataDummy";
-import Pop from "../../Components/Button/Pop";
+import Button from "../../Components/Button/";
 import Form from "../../Components/Form";
 import { getTrackData, filterData, createPlaylist } from "../../Utils/Services";
 import { trackSelect, trackDeselect } from "../../Redux/selectedSlice";
 import Style from "./style.module.css";
 import { storeTrack } from "../../Redux/trackSlice";
-import Search from "../../Components/Search/index";
+import Search from "../../Components/Search/Index";
 import Profile from "../../Components/Profile/Profile";
 import { Skeleton, Text } from "@chakra-ui/react";
 
@@ -33,7 +33,7 @@ function Index() {
     e.preventDefault();
     const query = e.target.query.value;
     setLoading(true);
-    if(query !== '') {
+    if(query !== "") {
       getTrackData(query, Token).then(data =>
         TrackSelected.length > 0
           ? dispatch(storeTrack(filterData(data.tracks.items, TrackSelected)))
@@ -79,7 +79,7 @@ function Index() {
           Create Playlist
         </Text>
         {TrackSelected.length > 0 && (
-          <Pop
+          <Button
             handleForm={handleForm}
             text={Create ? "Cancel" : "Create Playlist"}
           />
@@ -89,7 +89,7 @@ function Index() {
       <div className={Style.homeItem}>
         {Tracks.map(Track =>
           TrackSelected.find(S => S.uri === Track.uri) ? (
-            <Home
+            <HomeTrack
               key={Track.uri}
               image={Track.album.images[0].url}
               title={Track.name}
@@ -101,7 +101,7 @@ function Index() {
             />
           ) : (
             <Skeleton isLoaded={!loading} speed="1">
-              <Home
+              <HomeTrack
                 key={Track.uri}
                 image={Track.album.images[0].url}
                 title={Track.name}

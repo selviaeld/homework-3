@@ -56,7 +56,7 @@ function Index() {
                 <div className={Style.navbar}>
                     <Profile />
                 </div>
-                <Box py={3} px={5}>
+                <Box py={2} px={5}>
                     <Text
                         fontSize="3xl"
                         fontWeight="700"
