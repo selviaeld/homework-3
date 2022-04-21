@@ -72,7 +72,6 @@ function Index() {
                                 background="rgba(190, 192, 235, 0.3)"
                                 _hover={{ background: "rgba(223, 224, 252, 0.8)" }}
                                 key={index}
-                                pointerEvents="pointer-events"
                                 borderRadius="md"
                             >
                                 <div className={Style.cardImage}>

@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "../../Components/Navbar";
 import Style from "./style.module.css";
+import Footer from "../../Components/Footer";
 
 function index() {
   const handleClick = () => {
@@ -8,7 +9,7 @@ function index() {
     const Response_Type = "token";
     const Redirect_URI = "http://localhost:3000";
     const Scope = "playlist-modify-private user-library-read";
-    window.location = `https://accounts.spotify.com/authorize?client_id=${Client_ID}&response_type=${Response_Type}&redirect_uri=${Redirect_URI}&scope=${Scope}&show_dialog=true`;
+    window.location.href = `https://accounts.spotify.com/authorize?client_id=${Client_ID}&response_type=${Response_Type}&redirect_uri=${Redirect_URI}&scope=${Scope}&show_dialog=true`;
   };
 
   return (
@@ -26,9 +27,13 @@ function index() {
           </div>
         </div>
         <div className={Style.right}>
-          <img src={process.env.PUBLIC_URL + "/images/playlist.svg"} alt="music-list" />
+          <img 
+            src={process.env.PUBLIC_URL + "/images/playlist.svg"}
+            alt="music-list" 
+          />
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

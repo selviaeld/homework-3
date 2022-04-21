@@ -25,8 +25,8 @@
 .homeItem {
     display: grid;
     grid-template-columns: 1fr;
-    grid-gap: 10px;
-    padding: 10px 20px 20px;
+    row-gap: 10px;
+    padding: 10px 20px;
 }
   
 .create-playlist {

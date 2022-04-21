@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useAppSelector } from "../../Redux/hooks";
 import Style from "./style.module.css";
 
 function Index() {
-  const Token = useSelector(state => state.token.token);
+  const Token = useAppSelector(state => state.token.token);
 
   useEffect(() => {
   }, [Token]);

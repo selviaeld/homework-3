@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, Switch, Route } from "react-router-dom";
 import Style from "./style.module.css";
 import CreatePlaylist from "../CreatePlaylist/CreatePlaylist";
 import LikedSong from "../LikedSong";
 import Recomend from "../Recomend";
 import Playlist from "../../Components/Playlist";
+import Data from "../../Constants/DataDummy";
+import { useAppDispatch } from "../../Redux/hooks";
+import { storeTrack } from "../../Redux/trackSlice";
 
 const routes = [
   {
@@ -22,6 +25,12 @@ const routes = [
 ];
 
 function Index() {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(storeTrack(Data));
+  }, [dispatch]);
+
   return (
     <div className={Style.container}>
       <div className={Style.sidebar}>

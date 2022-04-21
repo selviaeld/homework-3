@@ -5,12 +5,13 @@ import Image from "../Image";
 import { Button } from "@chakra-ui/react";
 
 interface CardType {
-    title: string,
-    artist: string,
-    album: string,
-    image: string,
-    handleSelect: React.MouseEventHandler<HTMLButtonElement>,
-    btnText: string
+    title: string;
+    artist: string;
+    album: string;
+    image: string;
+    url?: string;
+    handleSelect?: React.MouseEventHandler<HTMLButtonElement>;
+    btnText: string;
   }
   
   function Track({ title, artist, album, image, handleSelect, btnText }: CardType) {

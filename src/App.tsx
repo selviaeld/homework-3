@@ -8,20 +8,22 @@ import {
 } from "react-router-dom";
 import Auth from "./Pages/Auth"
 import Landing from "./Pages/Landing";
-import { useSelector, useDispatch } from "react-redux";
+import { useAppSelector, useAppDispatch } from "./Redux/hooks";
 import { getTokenFromUrl } from "./Utils/Services";
 import { getToken } from "./Redux/tokenSlice";
 
 function App() {
-  const Token = useSelector(state => state.token.token);
-  const dispatch = useDispatch();
+  const Token = useAppSelector(state => state.token.token);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (window.location.hash) {
-      const access_token = getTokenFromUrl(window.location.hash);
-      dispatch(getToken(access_token));
+      const token = getTokenFromUrl(window.location.hash);
+      dispatch(getToken(token.access_token));
     }
   }, [dispatch]);
+
+  console.log(Token);
 
   return (
     <div className="App">

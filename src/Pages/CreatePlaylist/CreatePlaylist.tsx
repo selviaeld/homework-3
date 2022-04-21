@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useAppSelector, useAppDispatch } from "../../Redux/hooks";
 import HomeTrack from "../../Components/Track";
 import Data from "../../Constants/DataDummy";
-import Button from "../../Components/Button/";
+import Button from "../../Components/Button";
 import Form from "../../Components/Form";
 import { getTrackData, filterData, createPlaylist } from "../../Utils/Services";
 import Style from "./style.module.css";
@@ -10,27 +10,30 @@ import { storeTrack, trackSelect, trackDeselect } from "../../Redux/trackSlice";
 import Search from "../../Components/Search/Index";
 import Profile from "../../Components/Profile/Profile";
 import { Skeleton, Text } from "@chakra-ui/react";
+import { Track } from "../../Types/trackType";
 
 function Index() {
-  const Tracks = useSelector(state => state.track.track);
-  const TrackSelected= useSelector(state => state.track.selected);
+  const Tracks = useAppSelector(state => state.track.track);
+  const TrackSelected= useAppSelector(state => state.track.selected);
   const [Create, setCreate] = useState(false);
-  const Token = useSelector(state => state.token.token);
-  const User = useSelector(state => state.token.user);
+  const Token = useAppSelector(state => state.token.token);
+  const User = useAppSelector(state => state.token.user);
   const [loading, setLoading] = useState(false);
-  const dispatch = useDispatch();
+  const [query, setQuery] =useState("");
+  const dispatch = useAppDispatch();
 
-  const handleDeselect = data => {
-    dispatch(trackDeselect(TrackSelected.filter(T => T.uri !== data.uri)));
+  const handleDeselect = (data: Track) => {
+    dispatch(
+      trackDeselect(TrackSelected.filter((T: Track) => T.uri !== data.uri))
+    );
   };
 
-  const handleSelect = data => {
+  const handleSelect = (data: Track) => {
     dispatch(trackSelect([data, ...TrackSelected]));
   };
 
-  const handleSearch = e => {
+  const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    const query = e.target.query.value;
     setLoading(true);
     if(query !== "") {
       getTrackData(query, Token).then(data =>
@@ -49,7 +52,7 @@ function Index() {
     setCreate(!Create);
   };
 
-  const handleCreate = async e => {
+  const handleCreate = async (e: React.SyntheticEvent) => {
     e.preventDefault();
     if (TrackSelected.length > 0) {
       createPlaylist(e, User, Token, TrackSelected);
@@ -64,7 +67,10 @@ function Index() {
   return (
     <div className={Style.container}>
       <div className={Style.header}>
-        <Search handleSubmit={handleSearch} />
+        <Search
+          handleSubmit={handleSubmit}
+          handleChange={e => setQuery(e.target.value)}
+        />
         <Profile />
       </div>
       <div className={Style.title}>
@@ -85,37 +91,33 @@ function Index() {
         )}
       </div>
       {Create && <Form handleCreate={handleCreate} />}
-        {Tracks.map(Track =>
-          TrackSelected.find(S => S.uri === Track.uri) ? (
-            <div key={Track.uri} className={Style.homeItem}>
+        <div className={Style.homeItem}>
+          {Tracks.map((Track: any) =>
+            TrackSelected.find((S: Track) => S.uri === Track.uri) ? (
             <HomeTrack
               key={Track.uri}
               image={Track.album.images[0].url}
               title={Track.name}
               artist={Track.artists[0].name}
               album={Track.album.name}
-              url={Track.album.external_urls.spotify}
               btnText="Deselect"
               handleSelect={() => handleDeselect(Track)}
             />
-            </div>
           ) : (
-            <div key={Track.uri} className={Style.homeItem}>
-            <Skeleton isLoaded={!loading} speed="1">
+            <Skeleton isLoaded={!loading}>
               <HomeTrack
                 key={Track.uri}
                 image={Track.album.images[0].url}
                 title={Track.name}
                 artist={Track.artists[0].name}
                 album={Track.album.name}
-                url={Track.album.external_urls.spotify}
                 btnText="Select"
                 handleSelect={() => handleSelect(Track)}
               />
             </Skeleton>
-          </div>
-          )
-        )}
+            )
+          )}
+        </div>
     </div>
   );
 }

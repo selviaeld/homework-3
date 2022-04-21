@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import HomeTrack from "../Track";
 import { getRecomendation } from "../../Utils/Services";
-import { useSelector } from "react-redux";
+import { useAppSelector } from "../../Redux/hooks";
 import { Grid, Skeleton } from "@chakra-ui/react";
+import { Track } from "../../Types/trackType";
 
 function Index() {
-  const Token = useSelector(state => state.token.token);
+  const Token = useAppSelector(state => state.token.token);
   const [Recomendation, setRecomendation] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -18,8 +19,8 @@ function Index() {
 
   return (
     <Grid templateColumns="1ft" rowGap={3}>
-      {Recomendation.map(rec => (
-        <Skeleton isLoaded={!loading} speed="1.2">
+      {Recomendation.map((rec: Track) => (
+        <Skeleton isLoaded={!loading}>
           <HomeTrack
             key={rec.uri}
             image={rec.album.images[0].url}

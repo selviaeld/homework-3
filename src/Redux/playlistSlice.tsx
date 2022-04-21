@@ -4,7 +4,7 @@ const initialState = {
     playlist: {}
 }
 
-const playlistSlice = createSlice({
+export const playlistSlice = createSlice({
     name: 'playlist',
     initialState,
     reducers:{

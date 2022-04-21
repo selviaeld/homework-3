@@ -1,7 +1,9 @@
-export const getTokenFromUrl = hash => {
+import {Track} from "../Types/trackType";
+
+export const getTokenFromUrl = (hash: any) => {
     const stringAfterHastag = hash.substring(1);
     const paramInUrl = stringAfterHastag.split("&");
-    const paramSplitUp = paramInUrl.reduce((acc, currentValue) => {
+    const paramSplitUp = paramInUrl.reduce((acc: number[], currentValue: any) => {
       const [key, value] = currentValue.split("=");
       acc[key] = value;
       return acc;
@@ -9,31 +11,31 @@ export const getTokenFromUrl = hash => {
     return paramSplitUp;
 };
 
-export const filterData = (data, TrackSelected) => {
-    const tracks = [...TrackSelected.map(T => Object.assign({}, T)), ...data];
-    const filter = [...new Map(tracks.map(t => [t.uri, t])).values()];
+export const filterData = (data: any, TrackSelected: Track[]) => {
+    const tracks: Track[] = [...TrackSelected.map((T: Track)  => Object.assign({}, T)), ...data];
+    const filter = [...new Map(tracks.map((t) => [t.uri, t])).values()];
     return filter;
 };
 
-export const getTrackData = async (query, Token) => {
+export const getTrackData = async (query: string, Token: string) => {
     const url = `https://api.spotify.com/v1/search?q=${query}&type=track&limit=20`;
     if (query) {
       const data = await fetch(url, {
         headers: {
-          Authorization: "Bearer " + Token.access_token
+          Authorization: "Bearer " + Token
         }
       }).then(res => res.json());
       return data;
     }
 };
 
-export const createPlaylist = async (e, User, Token, TrackSelected) => {
+export const createPlaylist = async (e: any, User: any, Token: string, TrackSelected: Track[]) => {
     const uri = TrackSelected.map(T => T.uri);
     const url = `https://api.spotify.com/v1/users/${User.id}/playlists`;
     await fetch(url, {
       method: "POST",
       headers: {
-        Authorization: "Bearer " + Token.access_token,
+        Authorization: "Bearer " + Token,
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
@@ -47,12 +49,12 @@ export const createPlaylist = async (e, User, Token, TrackSelected) => {
       .then(data => storeTracks(data.id, uri, Token));
   };
   
-  const storeTracks = async (data, uri, Token) => {
+  const storeTracks = async (data: Track, uri: string[], Token: string) => {
     const url = `https://api.spotify.com/v1/playlists/${data}/tracks?position=0&uris=${uri}`;
     await fetch(url, {
       method: "POST",
       headers: {
-        Authorization: "Bearer " + Token.access_token,
+        Authorization: "Bearer " + Token,
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
@@ -64,41 +66,41 @@ export const createPlaylist = async (e, User, Token, TrackSelected) => {
       .then(data => console.log(data));
 };
 
-export const getCurrentUser = async Token => {
+export const getCurrentUser = async (Token: string) => {
     const url = `https://api.spotify.com/v1/me`;
     const data = await fetch(url, {
       headers: {
-        Authorization: "Bearer " + Token.access_token
+        Authorization: "Bearer " + Token
       }
     }).then(res => res.json());
     return data;
 };
 
-export const getPlaylistUser = async Token => {
+export const getPlaylistUser = async (Token: string) => {
   const url = `https://api.spotify.com/v1/me/playlists?offset=6&limit=20`;
   const data = await fetch(url, {
     headers: {
-      Authorization: "Bearer " + Token.access_token
+      Authorization: "Bearer " + Token
     }
   }).then(res => res.json());
   return data;
 }
 
-export const getRecomendation = async Token => {
+export const getRecomendation = async (Token: string) => {
   const url = `https://api.spotify.com/v1/recommendations?limit=20&seed_artist=4NHQUGzhtTLFvgF5SZesLK&seed_genres=classical&seed_tracks=0c6xIDDpzE81m2q797ordA`;
   const data = await fetch(url, {
     headers: {
-      Authorization: "Bearer " + Token.access_token
+      Authorization: "Bearer " + Token
     }
   }).then(res => res.json());
   return data;
 }
 
-export const getLikedTrack = async Token => {
+export const getLikedTrack = async (Token: string) => {
   const url = `https://api.spotify.com/v1/me/tracks?market=ES&limit=20`;
   const data = await fetch(url, {
     headers: {
-      Authorization: "Bearer " + Token.access_token
+      Authorization: "Bearer " + Token
     }
   }).then(res => res.json());
   return data;
