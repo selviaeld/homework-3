@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Style from "./style.module.css";
-import { login } from "../../Redux/userSlice";
+import { login } from "../../Redux/tokenSlice";
 import { getCurrentUser } from "../../Utils/Services";
 
 function Profile() {
-  const User = useSelector(state => state.user.user);
+  const User = useSelector(state => state.token.user);
   const Token = useSelector(state => state.token.token);
   const dispatch = useDispatch();
 

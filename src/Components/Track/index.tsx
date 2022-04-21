@@ -17,7 +17,7 @@ interface CardType {
     return (
         <div className={Style.playlist}>
             <div className={Style.container}>
-                <Image src={image} />
+                <Image src={image} data-testid="imageTrack"/>
                 <div className={Style.right}>
                     <Description 
                         title={title}
@@ -32,6 +32,8 @@ interface CardType {
                     background="rgb(209, 211, 240)"
                     color="white"
                     fontWeight="700"
+                    onClick={handleSelect}
+                    data-testid="buttonTrack"
                 >
                     {btnText}
                 </Button>

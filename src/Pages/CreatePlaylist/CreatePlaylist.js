@@ -5,19 +5,18 @@ import Data from "../../Constants/DataDummy";
 import Button from "../../Components/Button/";
 import Form from "../../Components/Form";
 import { getTrackData, filterData, createPlaylist } from "../../Utils/Services";
-import { trackSelect, trackDeselect } from "../../Redux/selectedSlice";
 import Style from "./style.module.css";
-import { storeTrack } from "../../Redux/trackSlice";
+import { storeTrack, trackSelect, trackDeselect } from "../../Redux/trackSlice";
 import Search from "../../Components/Search/Index";
 import Profile from "../../Components/Profile/Profile";
 import { Skeleton, Text } from "@chakra-ui/react";
 
 function Index() {
   const Tracks = useSelector(state => state.track.track);
-  const TrackSelected= useSelector(state => state.selected.selected);
+  const TrackSelected= useSelector(state => state.track.selected);
   const [Create, setCreate] = useState(false);
   const Token = useSelector(state => state.token.token);
-  const User = useSelector(state => state.user.user);
+  const User = useSelector(state => state.token.user);
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
 
@@ -86,9 +85,9 @@ function Index() {
         )}
       </div>
       {Create && <Form handleCreate={handleCreate} />}
-      <div className={Style.homeItem}>
         {Tracks.map(Track =>
           TrackSelected.find(S => S.uri === Track.uri) ? (
+            <div key={Track.uri} className={Style.homeItem}>
             <HomeTrack
               key={Track.uri}
               image={Track.album.images[0].url}
@@ -96,10 +95,12 @@ function Index() {
               artist={Track.artists[0].name}
               album={Track.album.name}
               url={Track.album.external_urls.spotify}
-              btnText="deselect"
+              btnText="Deselect"
               handleSelect={() => handleDeselect(Track)}
             />
+            </div>
           ) : (
+            <div key={Track.uri} className={Style.homeItem}>
             <Skeleton isLoaded={!loading} speed="1">
               <HomeTrack
                 key={Track.uri}
@@ -108,13 +109,13 @@ function Index() {
                 artist={Track.artists[0].name}
                 album={Track.album.name}
                 url={Track.album.external_urls.spotify}
-                btnText="select"
+                btnText="Select"
                 handleSelect={() => handleSelect(Track)}
               />
             </Skeleton>
+          </div>
           )
         )}
-      </div>
     </div>
   );
 }

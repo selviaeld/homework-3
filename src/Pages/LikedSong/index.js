@@ -10,7 +10,7 @@ function Index() {
   const Token = useSelector(state => state.token.token);
   const [Liked, setLiked] = useState([]);
   const [loading, setLoading] = useState(false);
-  const User = useSelector(state => state.user.user);
+  const User = useSelector(state => state.token.user);
 
   useEffect(() => {
     setLoading(true);
