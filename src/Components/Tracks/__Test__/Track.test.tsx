@@ -1,5 +1,5 @@
 import { render, screen, cleanup } from "@testing-library/react";
-import Track from "../index";
+import Track from "../HomeTrack";
 import "@testing-library/jest-dom/extend-expect";
 import userEvent from "@testing-library/user-event";
 
@@ -16,6 +16,7 @@ test("Component Track render correctly", () => {
         console.log("Selected");
       }}
       btnText="Select"
+      url=""
     />
   );
 
@@ -39,6 +40,7 @@ test("button select clicked", () => {
       image="https://i.scdn.co/image/ab67616d0000b273e319baafd16e84f0408af2a0"
       handleSelect={() => console.log("Selected")}
       btnText="Select"
+      url=""
     />
   );
   const buttonTrack = screen.getByTestId("buttonTrack");

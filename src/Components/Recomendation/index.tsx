@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import HomeTrack from "../Track";
+import HomeTrack from "../Tracks/HomeTrack";
 import { getRecomendation } from "../../Utils/Services";
 import { useAppSelector } from "../../Redux/hooks";
 import { Grid, Skeleton } from "@chakra-ui/react";
@@ -18,7 +18,7 @@ function Index() {
   }, [Token]);
 
   return (
-    <Grid templateColumns="1ft" rowGap={3}>
+    <Grid templateColumns="1ft" rowGap={3} py={3}>
       {Recomendation.map((rec: Track) => (
         <Skeleton isLoaded={!loading}>
           <HomeTrack

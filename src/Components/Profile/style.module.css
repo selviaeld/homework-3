@@ -7,9 +7,18 @@
     border-radius: 50px;
 }
   
-.profile p{
+.profile p {
     font-family: 'Nunito', sans-serif;
     color: white;
     font-weight: 700;
     margin: 0 7px;
+}
+
+.img {
+    height: 25px;
+}
+  
+.img img {
+    height: 100%;
+    border-radius: 50px;
 }

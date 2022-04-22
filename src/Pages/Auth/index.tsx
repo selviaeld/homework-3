@@ -1,18 +1,20 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link, Switch, Route } from "react-router-dom";
 import Style from "./style.module.css";
 import CreatePlaylist from "../CreatePlaylist/CreatePlaylist";
 import LikedSong from "../LikedSong";
-import Recomend from "../Recomend";
-import Playlist from "../../Components/Playlist";
-import Data from "../../Constants/DataDummy";
-import { useAppDispatch } from "../../Redux/hooks";
-import { storeTrack } from "../../Redux/trackSlice";
+import Home from "../Home";
+import Library from "../Library";
+
 
 const routes = [
   {
-    path:"/recomend",
-    main: () => <Recomend />
+    path:"/home",
+    main: () => <Home />
+  },
+  {
+    path:"/library",
+    main: () => <Library />
   },
   {
     path: "/create-playlist",
@@ -25,12 +27,6 @@ const routes = [
 ];
 
 function Index() {
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    dispatch(storeTrack(Data));
-  }, [dispatch]);
-
   return (
     <div className={Style.container}>
       <div className={Style.sidebar}>
@@ -40,19 +36,19 @@ function Index() {
         <ul className={Style.menu}>
           <li className={Style.menuTitle}>Recomendation</li>
           <li>
-            <Link to="/recomend" className={Style.menuLink}><i className="fa fa-star" />Recomend</Link>
+            <Link to="/home" className={Style.menuLink}><i className="fa fa-star" />Home</Link>
           </li>
           <li>
-            <Link to="/liked-song" className={Style.menuLink}><i className="fa fa-archive" />Library</Link>
+            <Link to="/library" className={Style.menuLink}><i className="fa fa-archive" />Library</Link>
           </li>
           <li>
-            <Link to="/liked-song" className={Style.menuLink}><i className="fa fa-podcast" />Podcast</Link>
+            <Link to="/" className={Style.menuLink}><i className="fa fa-podcast" />Podcast</Link>
           </li>
         </ul>
-        <ul className={Style.menu}>
+        {/*<ul className={Style.menu}>
           <li className={Style.menuTitle}>Playlist</li>
           <Playlist />
-        </ul>
+        </ul>*/}
         <ul className={Style.menu}>
           <li className={Style.menuTitle}>My Music</li>
           <li>

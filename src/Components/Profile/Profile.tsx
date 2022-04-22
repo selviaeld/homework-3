@@ -17,7 +17,7 @@ function Profile() {
     <div className={Style.profile}>
       {User.images && (
         <>
-          <div className={Style.image}>
+          <div className={Style.img}>
             <img src={User.images[0].url} alt={User.display_name}/>
           </div>     
           <p><i className="fa fa-user" /> {User.display_name}</p>

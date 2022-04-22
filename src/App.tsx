@@ -23,25 +23,24 @@ function App() {
     }
   }, [dispatch]);
 
-  console.log(Token);
-
   return (
     <div className="App">
       <Router>
         <Switch>
-          <Route path="/create-playlist">
+          <Route path="/home">
             {Token !== "" ? <Auth /> : <Redirect to="/" />}
-            {/*<Auth />*/}
           </Route>
-          <Route path="/recomend">
+          <Route path="/Library">
             {Token !== "" ? <Auth /> : <Redirect to="/" />}
-            {/*<Auth />*/}
           </Route>
           <Route path="/liked-songs">
             {Token !== "" ? <Auth /> : <Redirect to="/" />}
           </Route>
+          <Route path="/create-playlist">
+            {Token !== "" ? <Auth /> : <Redirect to="/" />}
+          </Route>
           <Route path="/">
-            {Token !== "" ? <Redirect to="/create-playlist" /> : <Landing />}
+            {Token !== "" ? <Redirect to="/home" /> : <Landing />}
           </Route>
         </Switch>
       </Router>

@@ -2,7 +2,7 @@ import React from "react";
 import Style from "./style.module.css";
 
 interface SearchBoxProps {
-  handleSubmit: React.FormEventHandler<HTMLFormElement>;
+  handleSubmit?: React.FormEventHandler<HTMLFormElement>;
   handleChange: React.ChangeEventHandler<HTMLInputElement>
 }
 

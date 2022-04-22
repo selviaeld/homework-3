@@ -17,7 +17,7 @@ function index() {
       <Navbar handleClick={handleClick} />
       <div className={Style.container}>
         <div className={Style.left}>
-          <h1>Welcome to..</h1>
+          <h1>Welcome to ..</h1>
           <p>
             Find your favorite songs and artists. Numerous song suggestions will undoubtedly make you fall in love with it. Use this app for 1 month for free, then sign up to become a premium member of our subscription for
             <span className={Style.leftPrice}> $5.99/month.</span>.

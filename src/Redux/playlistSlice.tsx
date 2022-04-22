@@ -1,6 +1,10 @@
 import {createSlice} from "@reduxjs/toolkit";
 
-const initialState = {
+interface type {
+    playlist: object
+}
+
+const initialState: type = {
     playlist: {}
 }
 

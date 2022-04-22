@@ -21,6 +21,10 @@ export interface Track {
 export interface likedSong {
     track: Track;
 }
+
+export interface Library {
+    track: Track;
+}
   
 export interface Album {
     album_type: string;

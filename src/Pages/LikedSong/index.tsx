@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useAppSelector } from "../../Redux/hooks";
 import { getLikedTrack } from "../../Utils/Services";
 import { Container, Grid, Skeleton, Box, Image, Flex, Text } from "@chakra-ui/react";
-import HomeTrack from "../../Components/Track";
+import HomeTrack from "../../Components/Tracks/HomeTrack";
 import Profile from "../../Components/Profile/Profile";
 import Style from "./style.module.css";
 import { likedSong } from "../../Types/trackType";

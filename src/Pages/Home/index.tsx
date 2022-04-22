@@ -99,7 +99,7 @@ function Index() {
                             fontFamily="Poppins, sans-serif"
                             mb={1}
                         >
-                            Releases for You
+                            This is for you
                         </Text>
                         <Recomendation />
                     </Box>
