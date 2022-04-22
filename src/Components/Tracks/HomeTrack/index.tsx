@@ -25,11 +25,8 @@ function Track({
   btnText
 }: CardType) {
   const handlePlay = () => {
-    const left = window.confirm("Do you really want to left this site ?");
-    if(left){
-      window.location.href = url;
-    }
-  }
+    window.open(url, "_black");
+  };
 
   return (
     <div className={Style.card}>

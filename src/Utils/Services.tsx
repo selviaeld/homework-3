@@ -97,7 +97,7 @@ export const getRecomendation = async (Token: string) => {
 }
 
 export const getLikedTrack = async (Token: string) => {
-  const url = `https://api.spotify.com/v1/me/tracks?market=ES&limit=20`;
+  const url = `https://api.spotify.com/v1/me/tracks?market=ES&limit=50`;
   const data = await fetch(url, {
     headers: {
       Authorization: "Bearer " + Token
