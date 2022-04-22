@@ -2,6 +2,17 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+# JAMAICA Project
+If you want add playlist your favorite songs, you can use this app.
+
+## Requirements
+1. Hooks
+2. Flex and Grid
+3. Typescript
+4. Eslint
+5. Redux
+6. Testing
+
 ## Available Scripts
 
 In the project directory, you can run:
